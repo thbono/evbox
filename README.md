@@ -26,7 +26,7 @@ POST /transactions - create a transaction. Body example:
 
     { "stationId": 1 }
 
-PUT /transaction/x - stop transaction x. Body example:
+PUT /transactions/x - stop transaction x. Body example:
                                        
     { "consumption": 20 }
 
