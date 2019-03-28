@@ -48,4 +48,4 @@ Default exposed port is 8080.
 
 ## Improvements
 
-- TODO: change database to a time shard scheme, improving searches by date (e.g. ElasticSearch)
+- TODO: add persistence layer with a time shard / time series database (e.g. Grafana, ElasticSearch)

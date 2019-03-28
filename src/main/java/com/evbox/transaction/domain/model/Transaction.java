@@ -4,16 +4,12 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Preconditions;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Transaction {
 
-    @Id
     private String id = UUID.randomUUID().toString();
 
     private int stationId;
@@ -25,9 +21,6 @@ public class Transaction {
     private LocalDateTime endedAt;
 
     private int consumption;
-
-    private Transaction() {
-    }
 
     public Transaction(final int stationId) {
         Preconditions.checkArgument(stationId > 0, "Invalid station id");
@@ -46,6 +39,12 @@ public class Transaction {
     @JsonIgnore
     public boolean isStatus(final TransactionStatus status) {
         return this.status.equals(status);
+    }
+
+    @JsonIgnore
+    public boolean changedInLastMinute() {
+        final LocalDateTime oneMinuteAgo = LocalDateTime.now().minusMinutes(1);
+        return oneMinuteAgo.isBefore(startedAt) || (endedAt != null && oneMinuteAgo.isBefore(endedAt));
     }
 
     public void stop(final int consumption) {

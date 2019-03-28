@@ -1,33 +1,32 @@
 package com.evbox.transaction.domain.model.projection;
 
+import com.evbox.transaction.domain.model.Transaction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class TransactionTotalDTO {
 
-    private int started;
-    private int stopped;
-    private int total;
+    private int started = 0;
+    private int stopped = 0;
+    private int total = 0;
 
     public int getStarted() {
         return started;
-    }
-
-    public void setStarted(int started) {
-        this.started = started;
     }
 
     public int getStopped() {
         return stopped;
     }
 
-    public void setStopped(int stopped) {
-        this.stopped = stopped;
-    }
-
     public int getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    @JsonIgnore
+    public void add(final Transaction transaction) {
+        total++;
+        // brackets omitted to avoid new stack context
+        if (transaction.isStopped()) stopped++;
+        else started++;
     }
 
 }
