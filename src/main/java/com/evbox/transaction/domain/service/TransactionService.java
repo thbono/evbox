@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Service
 public class TransactionService {
 
-    //TODO: add persistence layer with a time shard / time series database (e.g. Grafana, ElasticSearch)
+    //TODO: add persistence layer with a time shard / time series database (e.g. InfluxDB, ElasticSearch)
     private Map<String, Transaction> transactions = new HashMap<>();
 
     @Transactional

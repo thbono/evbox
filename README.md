@@ -48,4 +48,4 @@ Default exposed port is 8080.
 
 ## Improvements
 
-- TODO: add persistence layer with a time shard / time series database (e.g. Grafana, ElasticSearch)
+- TODO: add persistence layer with a time shard / time series database (e.g. InfluxDB, ElasticSearch)
